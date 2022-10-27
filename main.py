@@ -13,9 +13,19 @@ plt.show()
 
 #%%
 B=[0,17,37,57,77,100]
-sns.displot(data=df_X, x='THI',hue='Momento', bins=B, stat='percent',multiple='layer', common_norm=False) #, common_norm=False,element='step', fill=False)
+fig,ax = plt.subplots()
+df_i = df_X[df_X['Momento']=='THI INICIAL']
+sns.histplot(data=df_i, x='THI', bins=B, stat='percent',multiple='layer', common_norm=False) #, common_norm=False,element='step', fill=False)
 #sns.displot(data=df_X, x='THI',hue='Momento',bins=B ,kind='kde', common_norm=False)
+for bars in ax.containers:
+    ax.bar_label(bars,fmt = '%.0f%%', size=14)
+plt.ylim(0,50)
+plt.show()
 
+df_i = df_X[df_X['Momento']=='THI FINAL']
+sns.histplot(data=df_i, x='THI', bins=B, stat='percent',multiple='layer', common_norm=False) #, common_norm=False,element='step', fill=False)
+#sns.displot(data=df_X, x='THI',hue='Momento',bins=B ,kind='kde', common_norm=False)
+plt.ylim(0,50)
 plt.show()
 
 #%% Bin data --> no lo usaré
