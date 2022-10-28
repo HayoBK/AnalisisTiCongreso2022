@@ -1,6 +1,8 @@
 #%% Cargar datos
 import pandas as pd
 import seaborn as sns
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 
@@ -44,7 +46,7 @@ def Preduccion(row):
 df_T['Reducción THI'] = df_T.apply(reduccion , axis=1)
 df_T['Porcentaje Reducción THI'] = df_T.apply(Preduccion , axis=1)
 df_T['THI (nivel)'] = pd.cut( x= df_T['THI INICIAL'], bins=[0,17,37,57,77,100], labels = ['Muy leve','Leve','Moderado','Severo','Catrastrófico'])
-plt.clf()
+
 fig,ax = plt.subplots(figsize= (20,20))
 sns.set_style('white')
 h = sns.jointplot(data = df_T, s=75, x='Reducción THI', y='Porcentaje Reducción THI', marginal_kws=dict(bins=14, fill=True))
